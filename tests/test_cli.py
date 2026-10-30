@@ -97,9 +97,13 @@ def test_all_shows_every_pair(capsys):
 def test_redact_removes_prompt_text(capsys):
     path = str(EXAMPLES / "timestamp_in_system.jsonl")
     main([path, "--redact"])
-    assert "Current time" not in capsys.readouterr().out
+    out = capsys.readouterr().out
+    assert "Current time" not in out
+    assert "2026-10-30T" not in out
     main([path, "--redact", "--format", "json"])
-    assert "before" not in json.loads(capsys.readouterr().out)["breaks"][0]
+    out = capsys.readouterr().out
+    assert "before" not in json.loads(out)["breaks"][0]
+    assert "2026-10-30T" not in out
 
 
 def test_fail_under(capsys):

@@ -54,7 +54,7 @@ def print_break(run: list[Break], redact: bool) -> None:
             f"  first changed byte: {item.offset:,} of {len(item.previous.rendered.data):,}, "
             f"at {item.path}"
         )
-    if item.detail:
+    if item.detail and not redact:
         print(f"  {item.detail}")
     if item.offset is not None and not redact:
         print(f"  before: {item.before}")
@@ -125,7 +125,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "input_tokens": report.uncached_tokens,
             "causes": dict(report.cause_counts()),
             "estimated_waste_base_tokens": round(report.waste_units, 1),
-            "estimated_waste_usd": report.waste_usd,
+            "estimated_waste_usd": None if report.waste_usd is None else round(report.waste_usd, 6),
             "facts_written": facts.FACTS_WRITTEN,
             "breaks": [item.to_dict(args.redact) for item in report.breaks],
         }

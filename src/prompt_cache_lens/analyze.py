@@ -238,9 +238,11 @@ class Break:
             "cache_read_input_tokens": self.current.read,
             "estimated_wasted_tokens": self.wasted_tokens,
             "estimated_waste_base_tokens": round(self.waste_units, 1),
-            "estimated_waste_usd": self.waste_usd,
+            "estimated_waste_usd": None if self.waste_usd is None else round(self.waste_usd, 6),
         }
-        if not redact:
+        if redact:
+            del data["detail"]  # may quote the changed value itself
+        else:
             data["before"] = self.before
             data["after"] = self.after
         return data

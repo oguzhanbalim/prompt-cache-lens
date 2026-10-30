@@ -141,7 +141,7 @@ $ prompt-cache-lens examples/request_id_in_system.jsonl --redact --format json  
     "request_id": 5
   },
   "estimated_waste_base_tokens": 5388.0,
-  "estimated_waste_usd": 0.021551999999999998,
+  "estimated_waste_usd": 0.021552,
   "facts_written": "2026-10-30",
   "breaks": [
     {
@@ -155,7 +155,6 @@ $ prompt-cache-lens examples/request_id_in_system.jsonl --redact --format json  
       "previous_bytes": 3322,
       "bytes": 3458,
       "path": "system[0].text",
-      "detail": "8f6e2a87-c60d-5e53-357a-dacabc9ae844 -> 5b062361-9d83-609a-439e-f482cee95ac0",
       "cache_read_input_tokens": 0,
       "estimated_wasted_tokens": 830,
       "estimated_waste_base_tokens": 996.0,
